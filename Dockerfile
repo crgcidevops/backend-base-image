@@ -45,7 +45,7 @@ EXPOSE 22
 # INSTALL S6 PROCESS SUPERVISOR
 #=====================================
 
-ADD https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz /tmp/
+RUN wget -q -O /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v1.11.0.1/s6-overlay-amd64.tar.gz
 RUN tar xzf /tmp/s6-overlay-amd64.tar.gz -C /
 # Clear script "fix-attrs" which is change owner of files to root, but it's inconvenient in development
 RUN echo "" > /etc/fix-attrs.d/00-runscripts
@@ -58,5 +58,5 @@ EXPOSE 8000
 
 RUN mkdir /var/log/civic && chmod -R 777 /var/log/civic
 
-RUN easy_install pip==7.1.2 && pip install ipython pudb
+RUN easy_install pip==7.1.2 && pip install ipython==5.4 pudb==2017.1.2
 
